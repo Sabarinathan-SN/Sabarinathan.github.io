@@ -123,3 +123,9 @@ body {
         opacity: 1;
     }
 }
+
+@media (max-width: 599px) {
+    .scroll-indicator {
+        width: 40px;
+    }
+}
