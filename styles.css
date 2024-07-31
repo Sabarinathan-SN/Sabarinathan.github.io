@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    perspective: 1000px;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.section {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    box-sizing: border-box;
+    transform-origin: center;
+    transition: transform 1s, clip-path 1s;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.section .icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+
+.section h1, .section h2 {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 2.5em;
+    color: #d20c0c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section p, .section a, .section li {
+    margin: 10px 0;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+.section a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+.section a:hover {
+    text-decoration: underline;
+}
+
+.section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section ul li {
+    margin: 10px 0;
+}
+
+.tearing {
+    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+}
+
+.rejoining {
+    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+}
+
+@keyframes tear {
+    0% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
+    100% {clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);}
+}
+
+@keyframes rejoin {
+    0% {clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);}
+    100% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
+}
+
+.section.tearing {
+    animation: tear 1s forwards;
+}
+
+.section.rejoining {
+    animation: rejoin 1s forwards;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background: white;
+    border-radius: 2px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scaleX(2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
