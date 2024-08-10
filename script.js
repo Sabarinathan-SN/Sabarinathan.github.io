@@ -10,39 +10,33 @@ document.addEventListener('wheel', (event) => {
     const nextSection = currentSection + direction;
 
     if (nextSection >= 0 && nextSection < sections.length) {
-        // Reset previous section
+        // Reset previous section classes
         sections[currentSection].classList.remove('tearing', 'rejoining');
         sections[nextSection].classList.remove('tearing', 'rejoining');
-        
-        // Apply transition classes
+
+        // Apply transition classes based on scroll direction
         if (direction > 0) {
-            // Scrolling down
             sections[currentSection].classList.add('tearing');
             sections[nextSection].classList.add('rejoining');
         } else {
-            // Scrolling up
             sections[currentSection].classList.add('rejoining');
             sections[nextSection].classList.add('tearing');
         }
 
-        // Hide the current section and set opacity to 0
-        sections[currentSection].style.opacity = 0;
-        
         // Delay before showing the next section
         setTimeout(() => {
-            sections[currentSection].style.display = 'none';  // Ensure the old section is hidden
-            sections[nextSection].style.display = 'flex';     // Ensure the new section is visible
-            sections[nextSection].style.opacity = 1;           // Ensure opacity transition
+            sections[currentSection].style.display = 'none';  // Hide the current section
+            sections[nextSection].style.display = 'flex';     // Show the next section
 
-            // Clean up after transition
+            // After showing the next section, reset the opacity and classes
             setTimeout(() => {
-                sections[currentSection].style.opacity = 0;  // Ensure opacity transition
+                sections[nextSection].style.opacity = 1;  // Ensure the next section is fully visible
                 sections[currentSection].classList.remove('tearing', 'rejoining');
                 sections[nextSection].classList.remove('tearing', 'rejoining');
                 currentSection = nextSection;
                 isScrolling = false;
-            }, 200); 
-        }, 600); 
+            }, 200);
+        }, 600);
     } else {
         isScrolling = false;
     }
