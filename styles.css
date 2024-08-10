@@ -9,13 +9,13 @@ body {
 .container {
     perspective: 1000px;
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .section {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -31,6 +31,7 @@ body {
     transition: transform 1s, clip-path 1s;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
+
 .section .icon {
     width: 30px;
     height: 30px;
@@ -71,32 +72,6 @@ body {
     margin: 10px 0;
 }
 
-.tearing {
-    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-}
-
-.rejoining {
-    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-}
-
-@keyframes tear {
-    0% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
-    100% {clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);}
-}
-
-@keyframes rejoin {
-    0% {clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);}
-    100% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
-}
-
-.section.tearing {
-    animation: tear 1s forwards;
-}
-
-.section.rejoining {
-    animation: rejoin 1s forwards;
-}
-
 .scroll-indicator {
     position: absolute;
     bottom: 20px;
@@ -124,8 +99,45 @@ body {
     }
 }
 
+/* Responsiveness */
 @media (max-width: 599px) {
     .scroll-indicator {
         width: 40px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .section h1, .section h2 {
+        font-size: 2em;
+    }
+
+    .section p, .section a, .section li {
+        font-size: 1em;
+    }
+
+    .section .icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    .section {
+        padding: 15px;
+    }
+
+    .section h1, .section h2 {
+        font-size: 1.8em;
+    }
+
+    .section p, .section a, .section li {
+        font-size: 0.9em;
+    }
+
+    .section .icon {
+        width: 20px;
+        height: 20px;
     }
 }
